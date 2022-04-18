@@ -1,1 +1,1 @@
-This is RestAPI from a store for selling and renting houses
+a Store for selling and renting houses api with django rest framework
