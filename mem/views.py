@@ -14,29 +14,13 @@ class ProductView(ModelViewSet):
     filterset_class = ProductFilter
     search_fields = ['title']
     ordering_fields = ['price']
-
     def get_serializer_context(self):
         return {'request ': self.request}
     lookup_field = 'id'
+    
 
 class ReviewView(ModelViewSet):
     queryset = Reviews.objects.all()
     serializer_class = Reviewserializer
 
-
-
-# class ProductList(ListCreateAPIView):
-#     queryset = queryset = Product.objects.all()
-#     serializer_class = Productserializer
-
-#     def get_serializer_context(self):
-#         return {'request ': self.request}
-
-
-
-
-# class ProductDetails(RetrieveUpdateDestroyAPIView):
-#     queryset = queryset = Product.objects.all()
-#     serializer_class = Productserializer
-#     lookup_field = 'id'
 
