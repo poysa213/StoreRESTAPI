@@ -6,6 +6,7 @@ from . import views
 
 
 
+
 router = routers.DefaultRouter()
 router.register('product', views.ProductView)
 
