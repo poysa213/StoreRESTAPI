@@ -9,10 +9,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('product', views.ProductView)
-router.register('favourite', views.FavouriteView, basename='favourite')
-
 
 product_routers = routers.NestedDefaultRouter(router,'product',lookup='Product')
-product_routers.register('reviews',views.ReviewView,basename='product-reviews')
+product_routers.register('reviews',views.ReviewView)
 # URLConf
 urlpatterns = router.urls + product_routers.urls
