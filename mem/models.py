@@ -10,7 +10,7 @@ class Userdata(models.Model):
     lastname = models.CharField(max_length=255)
     Birthdate = models.DateTimeField(auto_now=False, auto_now_add=False)
 
-class Product(models.Model):
+class product(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
     description = models.TextField(null=True)
@@ -18,6 +18,7 @@ class Product(models.Model):
     Rooms = models.DecimalField(max_digits=2,decimal_places=0,null=True)
     Size = models.DecimalField(max_digits=8,decimal_places=4,null=True)
     Wifi = models.BooleanField(null=True)
+    is_favourite = models.BooleanField(default=False)
     Equipped = models.BooleanField(null=True)
     Parking = models.BooleanField(null=True)
     Created = models.DateTimeField(auto_now=True)
@@ -29,7 +30,7 @@ class Product(models.Model):
         ordering = ['title']
 
 class Reviews(models.Model):
-    Product = models.ForeignKey(Product,on_delete=models.CASCADE , related_name='reviews')
+    Product = models.ForeignKey(product,on_delete=models.CASCADE , related_name='reviews')
     name = models.CharField(max_length=255)
     description = models.TextField()
     date = models.DateField(auto_now_add=True)

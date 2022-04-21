@@ -1,6 +1,4 @@
-from argparse import Action
-from inspect import Parameter
-from itertools import product
+
 from turtle import title
 from django.urls import reverse
 from django.contrib import admin
@@ -35,7 +33,7 @@ class roomsfilter(admin.SimpleListFilter):
 
 
 
-@admin.register(models.Product)
+@admin.register(models.product)
 class ProdcutAdmin(admin.ModelAdmin) :
     actions = ['clear_price']
     list_display = ['title','price']

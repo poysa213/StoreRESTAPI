@@ -1,7 +1,6 @@
 from decimal import Decimal
-from pyexpat import model
 from rest_framework import serializers
-from .models import Product, Reviews, Userdata
+from .models import product, Reviews, Userdata
 
 class Userserializer(serializers.ModelSerializer):
     class Meta:
@@ -10,13 +9,18 @@ class Userserializer(serializers.ModelSerializer):
 
 class Productserializer(serializers.ModelSerializer) :
     class Meta:
-        model = Product
+        model = product
         fields = ('id','title','price','price_with_discount')
         Userdata = Userserializer()  
     price_with_discount = serializers.SerializerMethodField(method_name='calculate')
 
-    def calculate(self , product : Product):
+    def calculate(self , product : product):
         return product.price * Decimal(0.9)
+
+class Favouriteserializer(serializers.ModelSerializer):
+    class Meta:
+        model = product
+        fields = ('id','title','price','is_favourite')   
 
 
 class Userserializer(serializers.ModelSerializer):
@@ -24,7 +28,12 @@ class Userserializer(serializers.ModelSerializer):
         model = Userdata
         fields = ('id')
 
+
 class Reviewserializer(serializers.ModelSerializer):
     class Meta:
         model = Reviews
-        fields = ('id','date','name','description','Product')       
+        fields = ['id', 'date', 'name', 'description']
+
+    def create(self, validated_data):
+        product_id = self.context['product_id']
+        return Reviews.objects.create(product_id=product_id, **validated_data)             
