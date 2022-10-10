@@ -15,14 +15,14 @@ class Product(models.Model):
     slug = models.SlugField(null=True)
     description = models.TextField(null=True)
     price = models.DecimalField(max_digits=8, decimal_places=0,null=True)
-    Rooms = models.DecimalField(max_digits=2,decimal_places=0,null=True)
+    Rooms = models.IntegerField(default=1, null=True)
     Size = models.DecimalField(max_digits=8,decimal_places=4,null=True)
     Wifi = models.BooleanField(null=True)
     Equipped = models.BooleanField(null=True)
     Parking = models.BooleanField(null=True)
-    Created = models.DateTimeField(auto_now=True)
+    Created = models.DateTimeField(auto_now_add=True)
     pool = models.BooleanField(null=True)
-    phone = models.DecimalField(max_digits=10, decimal_places=0,null=True)
+    phone = models.IntegerField(max_digits=10, decimal_places=0,null=True)
     def __str__(self) -> str:
         return self.title
     class Meta:
